@@ -1,4 +1,4 @@
-﻿[alias]
+[alias]
 	commits = "log --oneline --decorate --graph"
 
 	branch-name = "rev-parse --abbrev-ref HEAD"
