@@ -1,6 +1,3 @@
-# File location (on Windows)
-`%USERPROFILE%\.gitconfig`
-
 # Special characters explanation
 
 <dl>
@@ -28,3 +25,11 @@
   <dt><code>$...</code></dt>
   <dd>get variable's value</dd>
 </dl>
+
+# File location (on Windows)
+
+`%USERPROFILE%\.gitconfig`
+
+# Usage warning
+
+Code assumes that you have `develop` branch, and all commits are made on dedicated feature branches.
