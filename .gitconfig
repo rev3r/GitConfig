@@ -18,5 +18,4 @@
 		git pull && \
 		git checkout $b && \
 		git merge develop && \
-		git push && \
-		git checkout develop #"
+		git push #"
