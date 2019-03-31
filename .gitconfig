@@ -1,0 +1,23 @@
+﻿[alias]
+	commits = "log --oneline --decorate --graph"
+
+	branch-name = "rev-parse --abbrev-ref HEAD"
+
+	branch-new = "! \
+		git checkout develop && \
+		git pull && \
+		git checkout -b $1 && \
+		git push -u origin $(git branch-name) #"
+
+	commit-all = "! \
+		git add -A && \
+		git commit -am \"$1\" #"
+
+	push-remote = "! \
+		b=$(git branch-name) && \
+		git checkout develop && \
+		git pull && \
+		git checkout $b && \
+		git merge develop && \
+		git push && \
+		git checkout develop #"
