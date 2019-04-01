@@ -14,7 +14,7 @@
 
 	commit-all = "! \
 		b=$(git branch-name) && \
-		[ $b != 'master' -a $b != 'develop' ] && \
+		[[ $b != 'master' && $b != 'develop' ]] && \
 		git add -A && \
 		git commit -am \"$1\" #"
 
