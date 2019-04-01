@@ -25,11 +25,8 @@
   <dt><code>\"...\"</code></dt>
   <dd>allow white spaces</dd>
 
-  <dt><code>[ ... ]</code></dt>
-  <dd>inline if that returns exit code</dd>
-
-  <dt><code>-a</code></dt>
-  <dd>'AND' inside 'if'</dd>
+  <dt><code>[[ ... ]]</code></dt>
+  <dd>inline if that returns status code</dd>
 </dl>
 
 # File location (on Windows)
