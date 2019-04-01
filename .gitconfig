@@ -1,5 +1,8 @@
 [alias]
-	commits = "log --oneline --decorate --graph"
+	log-direct = "log --oneline --decorate --first-parent"
+	log-labeled = "log --oneline --decorate --graph --simplify-by-decoration"
+	log-all = "log --oneline --decorate --graph"
+	
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
 	branch-new = "! \
