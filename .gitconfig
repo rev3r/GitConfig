@@ -25,3 +25,7 @@
 		git checkout $b && \
 		git merge develop && \
 		git push #"
+	
+	pull-remote = "! \
+		git checkout develop && \
+		git pull #"
