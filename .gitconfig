@@ -1,9 +1,9 @@
 [alias]
-	log-ahead = "!git log --oneline --ancestry-path develop^..$(git branch-name)"
+	log-ahead = "!git log --oneline --ancestry-path develop..$(git branch-name)"
 	log-direct = "log --oneline --decorate --first-parent"
 	log-labeled = "log --oneline --decorate --graph --simplify-by-decoration"
 	log-all = "log --oneline --decorate --graph"
-	
+
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
 	branch-new = "! \
@@ -23,7 +23,7 @@
 		git checkout $b && \
 		git merge develop && \
 		git push #"
-	
+
 	pull-remote = "! \
 		git checkout develop && \
 		git pull #"
