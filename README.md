@@ -26,7 +26,7 @@
   <dd>allow white spaces</dd>
 
   <dt><code>[[ ... ]]</code></dt>
-  <dd>inline if that returns status code</dd>
+  <dd>inline 'if' that returns status code</dd>
 </dl>
 
 # File location (on Windows)
