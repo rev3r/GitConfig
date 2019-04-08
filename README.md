@@ -5,7 +5,7 @@
   <dd>shell mode (allows multiple commands, non-git commands etc.)</dd>
 
   <dt><code>&&</code></dt>
-  <dd>execute next command if current succeed</dd>
+  <dd>execute next command if current succeed (or standard 'AND' when inside 'if')</dd>
 
   <dt><code>\</code></dt>
   <dd>allow command to continue in newline</dd>
