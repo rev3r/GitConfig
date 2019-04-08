@@ -19,6 +19,7 @@
 
 	push-remote = "! \
 		b=$(git branch-name) && \
+		[[ $b != 'master' && $b != 'develop' ]] && \
 		git pull-remote && \
 		git checkout $b && \
 		git merge develop && \
