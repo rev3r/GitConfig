@@ -6,6 +6,10 @@
 
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
+	pull-remote = "! \
+		git checkout develop && \
+		git pull #"
+
 	branch-new = "! \
 		git pull-remote && \
 		git checkout -b $1 && \
@@ -24,7 +28,3 @@
 		git checkout $b && \
 		git merge develop && \
 		git push #"
-
-	pull-remote = "! \
-		git checkout develop && \
-		git pull #"
