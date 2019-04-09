@@ -6,13 +6,6 @@
 
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
-	pull-remote = "! \
-		b=$(git branch-name) && \
-		git checkout develop && \
-		git pull && \
-		[[ $b != 'master' && $b != 'develop' ]] && \
-		git checkout $b #"
-
 	branch-new = "! \
 		git pull-remote && \
 		git checkout -b $1 && \
@@ -23,6 +16,13 @@
 		[[ $b != 'master' && $b != 'develop' ]] && \
 		git add -A && \
 		git commit -am \"$1\" #"
+
+	pull-remote = "! \
+		b=$(git branch-name) && \
+		git checkout develop && \
+		git pull && \
+		[[ $b != 'master' && $b != 'develop' ]] && \
+		git checkout $b #"
 
 	push-remote = "! \
 		git pull-remote && \
