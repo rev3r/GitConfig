@@ -7,8 +7,11 @@
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
 	pull-remote = "! \
+		b=$(git branch-name) && \
 		git checkout develop && \
-		git pull #"
+		git pull && \
+		[[ $b != 'master' && $b != 'develop' ]] && \
+		git checkout $b #"
 
 	branch-new = "! \
 		git pull-remote && \
@@ -22,9 +25,6 @@
 		git commit -am \"$1\" #"
 
 	push-remote = "! \
-		b=$(git branch-name) && \
-		[[ $b != 'master' && $b != 'develop' ]] && \
 		git pull-remote && \
-		git checkout $b && \
 		git merge develop && \
 		git push #"
