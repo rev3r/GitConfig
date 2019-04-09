@@ -1,3 +1,11 @@
+# File location (on Windows)
+
+`%USERPROFILE%\.gitconfig`
+
+# Editing (from git)
+
+`git config --global -e`
+
 # Special characters explanation
 
 <dl>
@@ -28,10 +36,6 @@
   <dt><code>[[ ... ]]</code></dt>
   <dd>inline 'if' that returns status code</dd>
 </dl>
-
-# File location (on Windows)
-
-`%USERPROFILE%\.gitconfig`
 
 # Usage warning
 
