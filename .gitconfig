@@ -7,7 +7,8 @@
 	branch-name = "rev-parse --abbrev-ref HEAD"
 
 	branch-new = "! \
-		git pull-remote && \
+		git checkout develop && \
+		git pull && \
 		git checkout -b $1 && \
 		git push -u origin $1 #"
 
