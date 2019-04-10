@@ -1,5 +1,5 @@
 [core]
-	editor = code --wait
+	editor = code --wait || notepad
 [alias]
 	log-ahead = log --oneline --ancestry-path develop..HEAD
 	log-direct = log --oneline --decorate --first-parent
