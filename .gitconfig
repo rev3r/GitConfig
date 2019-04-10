@@ -1,12 +1,12 @@
 [core]
 	editor = code --wait
 [alias]
-	log-ahead = "log --oneline --ancestry-path develop..HEAD"
-	log-direct = "log --oneline --decorate --first-parent"
-	log-labeled = "log --oneline --decorate --graph --simplify-by-decoration"
-	log-all = "log --oneline --decorate --graph"
+	log-ahead = log --oneline --ancestry-path develop..HEAD
+	log-direct = log --oneline --decorate --first-parent
+	log-labeled = log --oneline --decorate --graph --simplify-by-decoration
+	log-all = log --oneline --decorate --graph
 
-	branch-name = "rev-parse --abbrev-ref HEAD"
+	branch-name = rev-parse --abbrev-ref HEAD
 
 	branch-new = "! \
 		git checkout develop && \
