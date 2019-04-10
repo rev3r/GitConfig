@@ -5,8 +5,8 @@
 	editor = code --wait || notepad
 [alias]
 	log-ahead = log --oneline --ancestry-path develop..HEAD
-	log-direct = log --oneline --decorate --first-parent
-	log-labeled = log --oneline --decorate --graph --simplify-by-decoration
+	log-direct = log --oneline --first-parent
+	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
 	branch-name = rev-parse --abbrev-ref HEAD
