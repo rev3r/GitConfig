@@ -10,16 +10,16 @@
 
 <dl>
   <dt><code>!</code></dt>
-  <dd>shell mode (allows multiple commands, non-git commands etc.)</dd>
+  <dd>shell mode (allows multiple commands, bash commands etc.)</dd>
 
   <dt><code>&&</code></dt>
-  <dd>execute next command if current succeed (or standard 'AND' when inside 'if')</dd>
+  <dd>continue if current command succeed (or standard 'AND' when inside 'if')</dd>
 
   <dt><code>||</code></dt>
-  <dd>execute next command if current failed</dd>
+  <dd>continue if current command failed</dd>
 
   <dt><code>\</code></dt>
-  <dd>allow command to continue in newline</dd>
+  <dd>allow continuation in next line</dd>
 
   <dt><code>#</code></dt>
   <dd>comment rest of the user input</dd>
