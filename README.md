@@ -15,6 +15,9 @@
   <dt><code>&&</code></dt>
   <dd>execute next command if current succeed (or standard 'AND' when inside 'if')</dd>
 
+  <dt><code>||</code></dt>
+  <dd>execute next command if current failed</dd>
+
   <dt><code>\</code></dt>
   <dd>allow command to continue in newline</dd>
 
