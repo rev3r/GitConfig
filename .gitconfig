@@ -23,14 +23,14 @@
 		git add -A && \
 		git commit -am \"$1\" #"
 
-	rebase-remote = "! \
+	merge-remote = "! \
 		b=$(git branch-name) && \
 		[[ $b != 'master' && $b != 'develop' ]] && \
 		git checkout develop && \
 		git pull && \
 		git checkout $b && \
-		git rebase develop #"
+		git merge develop #"
 
 	push-remote = "! \
-		git rebase-remote && \
+		git merge-remote && \
 		git push #"
