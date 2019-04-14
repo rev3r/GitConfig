@@ -24,8 +24,8 @@
 		git commit -am \"$1\" #"
 
 	merge-remote = "! \
-		current = $(git current) && \
-		parent = $(git parent) && \
+		current=$(git current) && \
+		parent=$(git parent) && \
 		\
 		[[ $current != $parent ]] && \
 		git checkout $parent && \
