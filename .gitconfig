@@ -10,7 +10,7 @@
 	log-all = log --oneline --decorate --graph
 
 	current = rev-parse --abbrev-ref HEAD
-	parent = "! echo develop"
+	parent = "! echo develop #"
 
 	branch-new = "! \
 		git checkout $(git parent) && \
