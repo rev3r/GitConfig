@@ -19,7 +19,7 @@
   <dd>continue if current command failed</dd>
 
   <dt><code>\</code></dt>
-  <dd>allow continuation in next line</dd>
+  <dd>allow to continue in next line</dd>
 
   <dt><code>#</code></dt>
   <dd>comment rest of the user input</dd>
@@ -28,7 +28,7 @@
   <dd>get variable's value</dd>
 
   <dt><code>$1</code></dt>
-  <dd>first user provided argument</dd>
+  <dd>get first user-provided argument</dd>
 
   <dt><code>$(...)</code></dt>
   <dd>execute in-place</dd>
@@ -42,4 +42,4 @@
 
 # Usage warning
 
-Code assumes that you have `develop` branch, and all commits are made on dedicated feature branches.
+Code assumes that your base branch is `develop` (which can be altered in the `parent` alias), and all commits are made on dedicated feature branches.
