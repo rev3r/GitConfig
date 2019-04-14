@@ -4,32 +4,34 @@
 [core]
 	editor = code --wait || notepad
 [alias]
-	log-ahead = log --oneline --ancestry-path develop..HEAD
+	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
-	branch-name = rev-parse --abbrev-ref HEAD
+	current = rev-parse --abbrev-ref HEAD
+	parent = "! echo develop"
 
 	branch-new = "! \
-		git checkout develop && \
+		git checkout $(git parent) && \
 		git pull && \
 		git checkout -b $1 && \
 		git push -u origin $1 #"
 
 	commit-all = "! \
-		b=$(git branch-name) && \
-		[[ $b != 'master' && $b != 'develop' ]] && \
+		[[ $(git current) != $(git parent) ]] && \
 		git add -A && \
 		git commit -am \"$1\" #"
 
 	merge-remote = "! \
-		b=$(git branch-name) && \
-		[[ $b != 'master' && $b != 'develop' ]] && \
-		git checkout develop && \
+		current = $(git current) && \
+		parent = $(git parent) && \
+		\
+		[[ $current != $parent ]] && \
+		git checkout $parent && \
 		git pull && \
-		git checkout $b && \
-		git merge develop #"
+		git checkout $current && \
+		git merge $parent #"
 
 	push-remote = "! \
 		git merge-remote && \
