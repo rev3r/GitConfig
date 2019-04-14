@@ -4,13 +4,13 @@
 [core]
 	editor = code --wait || notepad
 [alias]
+	parent = "! echo develop #"
+	current = rev-parse --abbrev-ref HEAD
+
 	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
-
-	current = rev-parse --abbrev-ref HEAD
-	parent = "! echo develop #"
 
 	branch-new = "! \
 		git checkout $(git parent) && \
