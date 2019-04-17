@@ -5,6 +5,7 @@
 #	editor = notepad
 	editor = code --wait
 [alias]
+#	parent = "!echo master"
 	parent = "!echo develop"
 	current = rev-parse --abbrev-ref HEAD
 
