@@ -2,7 +2,7 @@
 	name = ...
 	email = ...
 [core]
-	editor = code --wait || notepad
+	editor = code --wait
 [alias]
 	parent = "! echo develop #"
 	current = rev-parse --abbrev-ref HEAD
@@ -26,7 +26,6 @@
 	merge-remote = "! \
 		current=$(git current) && \
 		parent=$(git parent) && \
-		\
 		[[ $current != $parent ]] && \
 		git checkout $parent && \
 		git pull && \
