@@ -2,10 +2,9 @@
 	name = ...
 	email = ...
 [core]
-#	editor = notepad
-	editor = code --wait
+	editor = code --wait # notepad
+	quotepath = off
 [alias]
-#	parent = "!echo master"
 	parent = "!echo develop"
 	current = rev-parse --abbrev-ref HEAD
 
