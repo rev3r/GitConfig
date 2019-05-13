@@ -37,7 +37,7 @@
 		git merge-remote && \
 		git push #"
 
-	delete-branch = "! \
+	branch-delete = "! \
 		current=$(git current) && \
 		parent=$(git parent) && \
 		[[ $current != $parent ]] && \
