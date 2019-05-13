@@ -36,3 +36,11 @@
 	push-remote = "! \
 		git merge-remote && \
 		git push #"
+
+	delete-branch = "! \
+		current=$(git current) && \
+		parent=$(git parent) && \
+		[[ $current != $parent ]] && \
+		git push -u origin :$current && \
+		git checkout $parent && \
+		git branch -D $current #"
