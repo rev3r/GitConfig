@@ -45,7 +45,7 @@
 		git checkout $parent && \
 		git branch -D $current #"
 		
-	push-work = "! \
+	push-fast = "! \
 		git add -A && \
 		git commit -am \"$(date +%Y-%m-%dT%H:%M:%S)\" && \
 		git push #"
