@@ -36,6 +36,11 @@
 	push-remote = "! \
 		git merge-remote && \
 		git push #"
+		
+	push-fast = "! \
+		git add -A && \
+		git commit -am \"$(date +%Y-%m-%dT%H:%M:%S)\" && \
+		git push #"
 
 	branch-delete = "! \
 		current=$(git current) && \
@@ -44,8 +49,3 @@
 		git push -u origin :$current && \
 		git checkout $parent && \
 		git branch -D $current #"
-		
-	push-fast = "! \
-		git add -A && \
-		git commit -am \"$(date +%Y-%m-%dT%H:%M:%S)\" && \
-		git push #"
