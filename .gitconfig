@@ -52,6 +52,7 @@
 		git push #"
 		
 	tag-new = "! \
+		[[ $(git current) == "master" ]] && \
 		git tag -a $1 -m \"$2\"
 		git push --tags #"
 
