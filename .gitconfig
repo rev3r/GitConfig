@@ -33,8 +33,17 @@
 		git checkout $current && \
 		git merge $parent #"
 
+	rebase-remote = "! \
+		current=$(git current) && \
+		parent=$(git parent) && \
+		[[ $current != $parent ]] && \
+		git checkout $parent && \
+		git pull && \
+		git checkout $current && \
+		git rebase $parent #"
+
 	push-remote = "! \
-		git merge-remote && \
+		git rebase-remote && \
 		git push #"
 		
 	push-fast = "! \
