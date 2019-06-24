@@ -50,6 +50,10 @@
 		git add -A && \
 		git commit -am \"$(date +%Y-%m-%dT%H:%M:%S)\" && \
 		git push #"
+		
+	tag-new = "! \
+		git tag -a $1 -m \"$2\"
+		git push --tags #"
 
 	branch-delete = "! \
 		current=$(git current) && \
