@@ -4,6 +4,8 @@
 [core]
 	editor = code --wait # notepad
 	quotepath = off
+[rerere]
+	enabled = true
 [alias]
 	parent = "!echo develop"
 	current = rev-parse --abbrev-ref HEAD
