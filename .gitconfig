@@ -15,6 +15,11 @@
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
+	checkout-stash = "! \
+		current=$(git current) && \
+		git stash push -um \"$current -> $1\" && \
+		git checkout $1 #"
+
 	branch-new = "! \
 		git checkout $(git parent) && \
 		git pull && \
@@ -44,19 +49,19 @@
 		git checkout $current && \
 		git rebase $parent #"
 
+	rebase-continue = "! \
+		git add -A && \
+		git commit && \
+		git rebase --continue #"
+
 	push-remote = "! \
 		git rebase-remote && \
 		git push #"
-		
+
 	push-fast = "! \
 		git add -A && \
 		git commit -am \"$(date +%Y-%m-%dT%H:%M:%S)\" && \
 		git push #"
-		
-	tag-new = "! \
-		[[ $(git current) == "master" ]] && \
-		git tag -a $1 -m \"$2\" && \
-		git push --tags #"
 
 	branch-delete = "! \
 		current=$(git current) && \
@@ -65,3 +70,12 @@
 		git push -u origin :$current && \
 		git checkout $parent && \
 		git branch -D $current #"
+
+	tag-new = "! \
+		[[ $(git current) == "master" ]] && \
+		git tag -a $1 -m \"$2\" && \
+		git push --tags #"
+
+	clean = "! \
+		git stash clear && \
+		git rerere forget . #"
