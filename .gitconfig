@@ -55,7 +55,7 @@
 		
 	tag-new = "! \
 		[[ $(git current) == "master" ]] && \
-		git tag -a $1 -m \"$2\"
+		git tag -a $1 -m \"$2\" && \
 		git push --tags #"
 
 	branch-delete = "! \
