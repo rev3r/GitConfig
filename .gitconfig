@@ -75,6 +75,12 @@
 		[[ $(git current) == "master" ]] && \
 		git tag -a $1 -m \"$2\" && \
 		git push --tags #"
+		
+	tag-delete = "! \
+		[[ $(git current) == "master" ]] && \
+		git tag -d $1 && \
+		git push origin :refs/tags/$1 && \
+		git push --tags #"
 
 	clean = "! \
 		git stash clear && \
