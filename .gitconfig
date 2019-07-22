@@ -72,7 +72,8 @@
 		git branch -D $current #"
 
 	tag-new = "! \
-		[[ $(git current) == "master" ]] && \
+		git checkout master && \
+		git pull && \
 		git tag -a $1 -m \"$2\" && \
 		git push --tags #"
 		
