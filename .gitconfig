@@ -7,15 +7,15 @@
 [rerere]
 	enabled = true
 [alias]
-	parent = "!echo develop"
+	parent = "! echo develop"
 	current = rev-parse --abbrev-ref HEAD
 
-	log-ahead = "!git log --oneline --ancestry-path $(git parent)..HEAD"
+	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
-	checkout-stash = "! \
+	stash-checkout = "! \
 		current=$(git current) && \
 		git stash push -um \"$current -> $1\" && \
 		git checkout $1 #"
@@ -82,6 +82,10 @@
 		git tag -d $1 && \
 		git push origin :refs/tags/$1 && \
 		git push --tags #"
+
+	pull-remote = "! \
+		git checkout $1 && \
+		git pull #"
 
 	clean = "! \
 		git stash clear && \
