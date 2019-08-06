@@ -17,17 +17,22 @@
 
 	stash-checkout = "! \
 		current=$(git current) && \
+		\
 		git stash push -um \"$current -> $1\" && \
 		git checkout $1 #"
 
 	branch-new = "! \
-		git checkout $(git parent) && \
-		git pull && \
+		parent=$(git parent) && \
+		\
+		git pull-remote $parent && \
 		git checkout -b $1 && \
 		git push -u origin $1 #"
 
 	commit-all = "! \
-		[[ $(git current) != $(git parent) ]] && \
+		current=$(git current) && \
+		parent=$(git parent) && \
+		[[ $current != $parent ]] && \
+		\
 		git add -A && \
 		git commit -am \"$1\" #"
 
@@ -35,8 +40,8 @@
 		current=$(git current) && \
 		parent=$(git parent) && \
 		[[ $current != $parent ]] && \
-		git checkout $parent && \
-		git pull && \
+		\
+		git pull-remote $parent && \
 		git checkout $current && \
 		git merge $parent #"
 
@@ -44,8 +49,8 @@
 		current=$(git current) && \
 		parent=$(git parent) && \
 		[[ $current != $parent ]] && \
-		git checkout $parent && \
-		git pull && \
+		\
+		git pull-remote $parent && \
 		git checkout $current && \
 		git rebase $parent #"
 
@@ -67,25 +72,24 @@
 		current=$(git current) && \
 		parent=$(git parent) && \
 		[[ $current != $parent ]] && \
+		\
 		git push -u origin :$current && \
 		git checkout $parent && \
 		git branch -D $current #"
 
+	pull-remote = "! \
+		git checkout $1 && \
+		git pull #"
+
 	tag-new = "! \
-		git checkout master && \
-		git pull && \
+		git pull-remote master && \
 		git tag -a $1 -m \"$2\" && \
 		git push --tags #"
 		
 	tag-delete = "! \
-		[[ $(git current) == "master" ]] && \
 		git tag -d $1 && \
 		git push origin :refs/tags/$1 && \
 		git push --tags #"
-
-	pull-remote = "! \
-		git checkout $1 && \
-		git pull #"
 
 	clean = "! \
 		git stash clear && \
