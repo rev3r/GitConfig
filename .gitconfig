@@ -15,12 +15,7 @@
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
-	stash-checkout = "! \
-		current=`git current` && \
-		\
-		git stash push -um \"$current -> $1\" && \
-		git checkout $1
-		#"
+	# branch
 
 	branch-new = "! \
 		parent=`git parent` && \
@@ -31,6 +26,18 @@
 		git push -u origin $1
 		#"
 
+	branch-delete = "! \
+		current=`git current` && \
+		parent=`git parent` && \
+		[[ $current != $parent ]] && \
+		\
+		git push -u origin :$current && \
+		git checkout $parent && \
+		git branch -D $current
+		#"
+
+	# changes
+
 	commit-all = "! \
 		current=`git current` && \
 		parent=`git parent` && \
@@ -38,6 +45,18 @@
 		\
 		git add -A && \
 		git commit -am \"$1\"
+		#"
+
+	# sync changes
+
+	pull-remote = "! \
+		current=`git current` && \
+		parent=`git parent` && \
+		[[ $current != $parent ]] && \
+		\
+		git checkout $parent && \
+		git pull && \
+		git checkout $current
 		#"
 
 	merge-remote = "! \
@@ -59,24 +78,7 @@
 		git push
 		#"
 
-	branch-delete = "! \
-		current=`git current` && \
-		parent=`git parent` && \
-		[[ $current != $parent ]] && \
-		\
-		git push -u origin :$current && \
-		git checkout $parent && \
-		git branch -D $current
-		#"
-
-	pull-remote = "! \
-		current=`git current` && \
-		parent=`git parent` && \
-		\
-		git checkout $parent && \
-		git pull && \
-		git checkout $current
-		#"
+	# tag
 
 	tag-new = "! \
 		git checkout master && \
@@ -89,6 +91,15 @@
 		git tag -d $1 && \
 		git push origin :refs/tags/$1 && \
 		git push --tags
+		#"
+
+	# stash
+
+	stash-checkout = "! \
+		current=`git current` && \
+		\
+		git stash push -um \"$current -> $1\" && \
+		git checkout $1
 		#"
 
 	clear = "! \
