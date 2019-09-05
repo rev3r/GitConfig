@@ -9,10 +9,10 @@
 [alias]
 	parent = "! echo develop"
 	current = rev-parse --abbrev-ref HEAD
-	
-	#log
 
-	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
+	# log
+
+	log-ahead = "! git log --oneline --ancestry-path `git parent`..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
@@ -25,7 +25,7 @@
 		git checkout $parent && \
 		git pull && \
 		git checkout -b $1 && \
-		git push -u origin $1
+		git push -u origin $1 \
 		#"
 
 	branch-delete = "! \
@@ -35,7 +35,7 @@
 		\
 		git push -u origin :$current && \
 		git checkout $parent && \
-		git branch -D $current
+		git branch -D $current \
 		#"
 
 	# changes
@@ -46,7 +46,7 @@
 		[[ $current != $parent ]] && \
 		\
 		git add -A && \
-		git commit -am \"$1\"
+		git commit -am \"$1\" \
 		#"
 
 	# sync changes
@@ -58,26 +58,26 @@
 		\
 		git checkout $parent && \
 		git pull && \
-		git checkout $current
+		git checkout $current \
 		#"
 
 	merge-remote = "! \
 		parent=`git parent` && \
 		\
 		git pull-remote && \
-		git merge $parent
+		git merge $parent \
 		#"
 
 	rebase-remote = "! \
 		parent=`git parent` && \
 		\
 		git pull-remote && \
-		git rebase $parent
+		git rebase $parent \
 		#"
 
 	push-remote = "! \
 		git rebase-remote && \
-		git push
+		git push \
 		#"
 
 	# tag
@@ -86,13 +86,13 @@
 		git checkout master && \
 		git pull && \
 		git tag -a $1 -m \"$2\" && \
-		git push --tags
+		git push --tags \
 		#"
 		
 	tag-delete = "! \
 		git tag -d $1 && \
 		git push origin :refs/tags/$1 && \
-		git push --tags
+		git push --tags \
 		#"
 
 	# stash
@@ -101,10 +101,10 @@
 		current=`git current` && \
 		\
 		git stash push -um \"$current -> $1\" && \
-		git checkout $1
+		git checkout $1 \
 		#"
 
 	clear = "! \
 		git stash clear && \
-		git rerere forget .
+		git rerere forget . \
 		#"
