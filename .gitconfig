@@ -9,6 +9,8 @@
 [alias]
 	parent = "! echo develop"
 	current = rev-parse --abbrev-ref HEAD
+	
+	#log
 
 	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
 	log-direct = log --oneline --first-parent
