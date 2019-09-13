@@ -20,12 +20,14 @@
 	# branch
 
 	branch-new = "! \
-		parent=`git parent` && \
-		\
-		git checkout $parent && \
-		git pull && \
+		git pull-parent && \
 		git checkout -b $1 && \
 		git push -u origin $1 \
+		#"
+
+	branch-remote = "! \
+		git fetch && \
+		git checkout $1 \
 		#"
 
 	branch-delete = "! \
@@ -51,13 +53,17 @@
 
 	# sync changes
 
-	pull-remote = "! \
-		current=`git current` && \
+	pull-parent = "! \
 		parent=`git parent` && \
-		[[ $current != $parent ]] && \
 		\
 		git checkout $parent && \
-		git pull && \
+		git pull \
+		#"
+
+	pull-remote = "! \
+		current=`git current` && \
+		\
+		git pull-parent && \
 		git checkout $current \
 		#"
 
