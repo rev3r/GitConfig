@@ -20,7 +20,10 @@
 	# branch
 
 	branch-new = "! \
-		git pull-parent && \
+		parent=`git parent` && \
+		\
+		git checkout $parent && \
+		git pull && \
 		git checkout -b $1 && \
 		git push -u origin $1 \
 		#"
@@ -31,58 +34,31 @@
 		#"
 
 	branch-delete = "! \
-		current=`git current` && \
 		parent=`git parent` && \
-		[[ $current != $parent ]] && \
 		\
-		git push -u origin :$current && \
+		git push origin :$1 && \
 		git checkout $parent && \
-		git branch -D $current \
+		git branch -D $1 \
 		#"
 
 	# changes
 
+	commit-amend = "! \
+		git add -A && \
+		git commit --amend --no-edit \
+		#"
+
 	commit-all = "! \
-		current=`git current` && \
-		parent=`git parent` && \
-		[[ $current != $parent ]] && \
-		\
 		git add -A && \
 		git commit -am \"$1\" \
 		#"
 
 	# sync changes
 
-	pull-parent = "! \
-		parent=`git parent` && \
-		\
-		git checkout $parent && \
-		git pull \
-		#"
-
-	pull-remote = "! \
-		current=`git current` && \
-		\
-		git pull-parent && \
-		git checkout $current \
-		#"
-
-	merge-remote = "! \
-		parent=`git parent` && \
-		\
-		git pull-remote && \
-		git merge $parent \
-		#"
-
-	rebase-remote = "! \
-		parent=`git parent` && \
-		\
-		git pull-remote && \
-		git rebase $parent \
-		#"
-
 	push-remote = "! \
-		git rebase-remote && \
+		parent=`git parent` && \
+		\
+		git pull origin $parent && \
 		git push \
 		#"
 
@@ -94,11 +70,10 @@
 		git tag -a $1 -m \"$2\" && \
 		git push --tags \
 		#"
-		
+
 	tag-delete = "! \
 		git tag -d $1 && \
-		git push origin :refs/tags/$1 && \
-		git push --tags \
+		git push origin :$1 \
 		#"
 
 	# stash
@@ -107,7 +82,8 @@
 		current=`git current` && \
 		\
 		git stash push -um \"$current -> $1\" && \
-		git checkout $1 \
+		git checkout $1 && \
+		git stash pop \
 		#"
 
 	clear = "! \
