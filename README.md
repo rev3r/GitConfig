@@ -13,7 +13,7 @@
   <dd>shell mode (allows multiple commands, bash commands etc.)</dd>
 
   <dt><code>&&</code></dt>
-  <dd>continue if current command succeed (or standard 'AND' when inside 'if')</dd>
+  <dd>continue if current command succeed</dd>
 
   <dt><code>||</code></dt>
   <dd>continue if current command failed</dd>
