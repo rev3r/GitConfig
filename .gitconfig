@@ -50,7 +50,7 @@
 
 	commit-all = "! \
 		git add -A && \
-		git commit -am \"$1\" \
+		git commit -m \"$1\" \
 		#"
 
 	# sync changes
