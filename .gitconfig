@@ -20,47 +20,42 @@
 	# branch
 
 	branch-new = "! \
-		parent=`git parent` && \
-		\
-		git checkout $parent && \
+		git checkout `git parent` && \
 		git pull && \
 		git checkout -b $1 && \
 		git push -u origin $1 \
-		#"
+	#"
 
 	branch-remote = "! \
 		git fetch && \
-		git checkout $1 \
-		#"
+		git checkout $1 && \
+		git pull \
+	#"
 
 	branch-delete = "! \
-		parent=`git parent` && \
-		\
 		git push origin :$1 && \
-		git checkout $parent && \
+		git checkout `git parent` && \
 		git branch -D $1 \
-		#"
+	#"
 
 	# changes
 
 	commit-amend = "! \
 		git add -A && \
 		git commit --amend --no-edit \
-		#"
+	#"
 
 	commit-all = "! \
 		git add -A && \
 		git commit -m \"$1\" \
-		#"
+	#"
 
 	# sync changes
 
 	push-remote = "! \
-		parent=`git parent` && \
-		\
-		git pull origin $parent && \
+		git pull origin `git parent` && \
 		git push \
-		#"
+	#"
 
 	# tag
 
@@ -69,24 +64,23 @@
 		git pull && \
 		git tag -a $1 -m \"$2\" && \
 		git push origin $1 \
-		#"
+	#"
 
 	tag-delete = "! \
 		git tag -d $1 && \
 		git push origin :$1 \
-		#"
+	#"
 
 	# stash
 
 	stash-checkout = "! \
-		current=`git current` && \
-		\
-		git stash push -um \"$current -> $1\" && \
+		git stash push -um \"`git current` -> $1\" && \
 		git checkout $1 && \
+		git pull origin `git parent` && \
 		git stash pop \
-		#"
+	#"
 
 	clear = "! \
 		git stash clear && \
 		git rerere forget . \
-		#"
+	#"
