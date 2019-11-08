@@ -34,7 +34,8 @@
 
 	branch-new = "! \
 		git switch-pull $(git parent) && \
-		git switch -c $1 --track \
+		git switch -c $1 && \
+		git push -u origin $1 \
 	#"
 
 	branch-remote = "! \
