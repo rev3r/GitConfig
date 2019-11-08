@@ -12,33 +12,43 @@
 
 	# log
 
-	log-ahead = "! git log --oneline --ancestry-path `git parent`..HEAD"
+	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
+	# switch
+
+	switch-pull = "! \
+		git switch $1 && \
+		git pull \
+	#"
+
+	switch-stash = "! \
+		git stash push -um \"$(git current) -> $1\" && \
+		git switch-pull $1 && \
+		git stash pop --index \
+	#"
+
 	# branch
 
 	branch-new = "! \
-		git checkout `git parent` && \
-		git pull && \
-		git checkout -b $1 && \
-		git push -u origin $1 \
+		git switch-pull $(git parent) && \
+		git switch -c $1 --track \
 	#"
 
 	branch-remote = "! \
 		git fetch && \
-		git checkout $1 && \
-		git pull \
+		git switch-pull $1 \
 	#"
 
 	branch-delete = "! \
 		git push origin :$1 && \
-		git checkout `git parent` && \
+		git switch $(git parent) && \
 		git branch -D $1 \
 	#"
 
-	# changes
+	# commit
 
 	commit-amend = "! \
 		git add -A && \
@@ -47,21 +57,21 @@
 
 	commit-all = "! \
 		git add -A && \
-		git commit -m \"$1\" \
+		git commit -m \"$1\" && \
+		git push \
 	#"
 
-	# sync changes
+	# push
 
 	push-remote = "! \
-		git pull origin `git parent` && \
+		git pull origin $(git parent) && \
 		git push \
 	#"
 
 	# tag
 
 	tag-new = "! \
-		git checkout master && \
-		git pull && \
+		git switch-pull master && \
 		git tag -a $1 -m \"$2\" && \
 		git push origin $1 \
 	#"
@@ -71,14 +81,7 @@
 		git push origin :$1 \
 	#"
 
-	# stash
-
-	stash-checkout = "! \
-		git stash push -um \"`git current` -> $1\" && \
-		git checkout $1 && \
-		git pull origin `git parent` && \
-		git stash pop \
-	#"
+	# other
 
 	clear = "! \
 		git stash clear && \
