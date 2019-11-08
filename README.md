@@ -30,7 +30,7 @@
   <dt><code>$1</code></dt>
   <dd>get first user-provided argument</dd>
 
-  <dt><code>`...`</code></dt>
+  <dt><code>$(...)</code></dt>
   <dd>execute in-place</dd>
 
   <dt><code>[[ ... ]]</code></dt>
