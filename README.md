@@ -22,7 +22,7 @@
   <dd>allow to continue in next line</dd>
 
   <dt><code>#</code></dt>
-  <dd>comment rest of the user input (if in bash) or comment whole line (if outside bash)</dd>
+  <dd>comment rest of the user input (if inside bash) or comment whole line (if outside bash)</dd>
 
   <dt><code>$...</code></dt>
   <dd>get variable's value</dd>
