@@ -37,9 +37,11 @@
   <dd>inline 'if' that returns status code</dd>
 
   <dt><code>\"...\"</code></dt>
-  <dd>allow white spaces</dd>
+  <dd>allow white spaces, but execute code inside</dd>
 </dl>
 
 # Usage warning
 
 Code assumes that your base branch is `develop` (which can be altered in the `parent` alias), and all commits are made on dedicated feature branches.
+
+To add testing before push, alter `test` alias.
