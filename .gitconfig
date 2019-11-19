@@ -60,8 +60,7 @@
 
 	commit-all = "! \
 		git add -A && \
-		git commit -m \"$1\" && \
-		git push-remote \
+		git commit -m \"$1\" \
 	#"
 
 	# push
@@ -70,6 +69,11 @@
 		git pull origin $(git parent) --rebase && \
 		git test && \
 		git push \
+	#"
+
+	push-all = "! \
+		git commit-all \"$1\" && \
+		git push-remote \
 	#"
 
 	# tag
