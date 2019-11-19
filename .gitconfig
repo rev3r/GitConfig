@@ -7,8 +7,9 @@
 [rerere]
 	enabled = true
 [alias]
-	parent = "! echo develop"
 	current = rev-parse --abbrev-ref HEAD
+	parent = "! echo develop"
+	test = "! echo \"No tests defined\""
 
 	# log
 
@@ -39,8 +40,9 @@
 	#"
 
 	branch-remote = "! \
-		git fetch && \
-		git switch-pull $1 \
+		git switch-pull $(git parent) && \
+		git switch $1 && \
+		git rebase $(git parent) \
 	#"
 
 	branch-delete = "! \
@@ -59,13 +61,14 @@
 	commit-all = "! \
 		git add -A && \
 		git commit -m \"$1\" && \
-		git push \
+		git push-remote \
 	#"
 
 	# push
 
 	push-remote = "! \
-		git pull origin $(git parent) && \
+		git pull origin $(git parent) --rebase && \
+		git test && \
 		git push \
 	#"
 
@@ -84,7 +87,7 @@
 
 	# other
 
-	clear = "! \
+	cleanup = "! \
 		git stash clear && \
 		git rerere forget . \
 	#"
