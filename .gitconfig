@@ -9,7 +9,7 @@
 [alias]
 	current = rev-parse --abbrev-ref HEAD
 	parent = "! echo develop"
-	test = "! echo \"No tests defined\""
+	test = "! echo 'No tests defined'"
 
 	# log
 
