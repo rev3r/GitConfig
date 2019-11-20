@@ -21,11 +21,15 @@
 	# switch
 
 	switch-pull = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git switch $1 && \
 		git pull \
 	#"
 
 	switch-stash = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git stash push -um \"$(git current) -> $1\" && \
 		git switch-pull $1 && \
 		git stash pop --index \
@@ -34,18 +38,23 @@
 	# branch
 
 	branch-new = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git switch-pull $(git parent) && \
 		git switch -c $1 && \
 		git push -u origin $1 \
 	#"
 
 	branch-remote = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git switch-pull $(git parent) && \
-		git switch $1 && \
-		git rebase $(git parent) \
+		git switch-pull $1 \
 	#"
 
 	branch-delete = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git push origin :$1 && \
 		git switch $(git parent) && \
 		git branch -D $1 \
@@ -59,6 +68,8 @@
 	#"
 
 	commit-all = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git add -A && \
 		git commit -m \"$1\" \
 	#"
@@ -72,6 +83,8 @@
 	#"
 
 	push-all = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git commit-all \"$1\" && \
 		git push-remote \
 	#"
@@ -79,12 +92,16 @@
 	# tag
 
 	tag-new = "! \
+		[[ ${1+abc} ]] && [[ ${2+abc} ]] && \
+		\
 		git switch-pull master && \
 		git tag -a $1 -m \"$2\" && \
 		git push origin $1 \
 	#"
 
 	tag-delete = "! \
+		[[ ${1+abc} ]] && \
+		\
 		git tag -d $1 && \
 		git push origin :$1 \
 	#"
