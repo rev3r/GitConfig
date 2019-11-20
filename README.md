@@ -36,6 +36,9 @@
   <dt><code>[[ ... ]]</code></dt>
   <dd>inline 'if' that returns status code</dd>
 
+  <dt><code>${1+abc}</code></dt>
+  <dd>evaluates to true if parameter exist (`abc` is just random string)</dd>
+
   <dt><code>\"...\"</code></dt>
   <dd>allow white spaces, but execute code inside</dd>
 </dl>
