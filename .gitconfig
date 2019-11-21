@@ -7,9 +7,12 @@
 [rerere]
 	enabled = true
 [alias]
-	current = name-rev --name-only HEAD
 	parent = "! echo develop"
 	test = "! echo 'No tests defined'"
+
+	# config
+
+	config-edit = config --global -e
 
 	# log
 
@@ -18,24 +21,41 @@
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
 
-	# switch
+	# diff
 
-	switch-pull = "! \
+	diff-full = diff --color-words
+	diff-summary = diff --compact-summary
+	diff-result = diff --shortstat
+
+	# restore
+
+	restore-worktree = restore --worktree .
+	restore-staged = restore --staged .
+	restore-both = restore --source=HEAD --worktree --staged .
+
+	# reset
+
+	reset-last = reset HEAD^ --soft
+	reset-hard = reset HEAD^ --hard
+
+	# clean
+
+	clean-test = clean -dx --dry-run
+	clean-execute = clean -dx --force
+
+	# stash
+
+	stash-all = "! \
 		[[ ${1+abc} ]] && \
 		\
-		git switch $1 && \
-		git pull \
-	#"
-
-	switch-stash = "! \
-		[[ ${1+abc} ]] && \
-		\
-		git stash push -um \"$(git current) -> $1\" && \
-		git switch-pull $1 && \
-		git stash pop --index \
+		git stash push -um \"$1\" \
 	#"
 
 	# branch
+
+	branch-current = name-rev --name-only HEAD
+	branch-recent = for-each-ref --sort='-committerdate' --format='%(color:dim)%(committerdate:relative)%09%(color:reset)%(refname:short)' --count=15 refs/heads/
+	branch-all = branch -a --sort='-authordate'
 
 	branch-new = "! \
 		[[ ${1+abc} ]] && \
@@ -60,12 +80,29 @@
 		git branch -D $1 \
 	#"
 
+	# switch
+
+	switch-pull = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git switch $1 && \
+		git pull \
+	#"
+
+	switch-stash = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git stash-all \"$(git branch-current) -> $1\" && \
+		git switch-pull $1 && \
+		git stash pop --index \
+	#"
+
 	# commit
 
 	commit-amend = "! \
 		git add -A && \
 		git commit --amend --no-edit \
-	#"
+	"
 
 	commit-all = "! \
 		[[ ${1+abc} ]] && \
@@ -74,13 +111,21 @@
 		git commit -m \"$1\" \
 	#"
 
+	# rebase
+
+	rebase-commits = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git rebase -i HEAD~$1 \
+	#"
+
 	# push
 
 	push-remote = "! \
 		git pull origin $(git parent) --rebase && \
 		git test && \
 		git push \
-	#"
+	"
 
 	push-all = "! \
 		[[ ${1+abc} ]] && \
@@ -111,4 +156,4 @@
 	cleanup = "! \
 		git stash clear && \
 		git rerere forget . \
-	#"
+	"
