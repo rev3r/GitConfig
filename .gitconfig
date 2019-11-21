@@ -27,6 +27,14 @@
 	diff-summary = diff --compact-summary
 	diff-result = diff --shortstat
 
+	# stash
+
+	stash-all = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git stash push -um \"$1\" \
+	#"
+
 	# restore
 
 	restore-worktree = restore --worktree .
@@ -42,14 +50,6 @@
 
 	clean-test = clean -dx --dry-run
 	clean-execute = clean -dx --force
-
-	# stash
-
-	stash-all = "! \
-		[[ ${1+abc} ]] && \
-		\
-		git stash push -um \"$1\" \
-	#"
 
 	# branch
 
