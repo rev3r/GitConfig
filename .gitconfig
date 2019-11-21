@@ -92,7 +92,7 @@
 	# tag
 
 	tag-new = "! \
-		[[ ${1+abc} ]] && [[ ${2+abc} ]] && \
+		[[ ${1+abc} && ${2+abc} ]] && \
 		\
 		git switch-pull master && \
 		git tag -a $1 -m \"$2\" && \
