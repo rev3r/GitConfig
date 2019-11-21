@@ -7,7 +7,7 @@
 [rerere]
 	enabled = true
 [alias]
-	current = rev-parse --abbrev-ref HEAD
+	current = name-rev --name-only HEAD
 	parent = "! echo develop"
 	test = "! echo 'No tests defined'"
 
