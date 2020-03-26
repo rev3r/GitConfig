@@ -8,7 +8,7 @@
 	enabled = true
 [alias]
 	parent = "! echo develop"
-	test = "! echo 'No tests defined'"
+	test = "! echo No tests defined"
 
 	# config
 
@@ -16,7 +16,7 @@
 
 	# log
 
-	log-ahead = "! git log --oneline --ancestry-path $(git parent)..HEAD"
+	log-ahead = "! git log --oneline --ancestry-path `git parent`..HEAD"
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
@@ -53,14 +53,18 @@
 
 	# branch
 
-	branch-current = name-rev --name-only HEAD
+	branch-current = rev-parse --abbrev-ref HEAD
 	branch-recent = for-each-ref --sort='-committerdate' --format='%(color:dim)%(committerdate:relative)%09%(color:reset)%(refname:short)' --count=15 refs/heads/
-	branch-all = branch -a --sort='-authordate'
+
+	branch-all = "! \
+		git fetch && \
+		git branch -a --sort='-authordate' \
+	#"
 
 	branch-new = "! \
 		[[ ${1+abc} ]] && \
 		\
-		git switch-pull $(git parent) && \
+		git switch-pull `git parent` && \
 		git switch -c $1 && \
 		git push -u origin $1 \
 	#"
@@ -68,16 +72,19 @@
 	branch-remote = "! \
 		[[ ${1+abc} ]] && \
 		\
-		git switch-pull $(git parent) && \
+		git switch-pull `git parent` && \
 		git switch-pull $1 \
 	#"
 
 	branch-delete = "! \
-		[[ ${1+abc} ]] && \
+		current=`git branch-current` && \
+		parent=`git parent` && \
 		\
-		git push origin :$1 && \
-		git switch $(git parent) && \
-		git branch -D $1 \
+		[[ $current != $parent && $current != master ]] && \
+		\
+		git push origin :$current && \
+		git switch $parent && \
+		git branch -D $current \
 	#"
 
 	# switch
@@ -92,7 +99,7 @@
 	switch-stash = "! \
 		[[ ${1+abc} ]] && \
 		\
-		git stash-all \"$(git branch-current) -> $1\" && \
+		git stash-all \"`git branch-current` -> $1\" && \
 		git switch-pull $1 && \
 		git stash pop --index \
 	#"
@@ -122,7 +129,7 @@
 	# push
 
 	push-remote = "! \
-		git pull origin $(git parent) --rebase && \
+		git pull origin `git parent` && \
 		git test && \
 		git push \
 	"
@@ -149,6 +156,14 @@
 		\
 		git tag -d $1 && \
 		git push origin :$1 \
+	#"
+
+	tag-update = "! \
+		[[ ${1+abc} ]] && \
+		\
+		message=`git tag -l --format='%(contents)' $1` && \
+		git tag-delete $1 && \
+		git tag-new $1 \"$message\" \
 	#"
 
 	# other
