@@ -54,7 +54,11 @@
 	# branch
 
 	branch-current = rev-parse --abbrev-ref HEAD
-	branch-recent = for-each-ref --sort='-committerdate' --format='%(color:dim)%(committerdate:relative)%09%(color:reset)%(refname:short)' --count=15 refs/heads/
+
+	branch-recent = "! \
+		git fetch && \
+		git for-each-ref --sort='-committerdate' --format='%(color:dim)%(committerdate:relative)%09%(color:reset)%(refname:short)' --count=15 refs/heads/ \
+	#"
 
 	branch-all = "! \
 		git fetch && \
