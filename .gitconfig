@@ -4,6 +4,8 @@
 [core]
 	editor = code --wait # notepad
 	quotepath = off
+[http]
+	sslVerify = false
 [rerere]
 	enabled = true
 [alias]
@@ -73,13 +75,6 @@
 		git push -u origin $1 \
 	#"
 
-	branch-remote = "! \
-		[[ ${1+abc} ]] && \
-		\
-		git switch-pull `git parent` && \
-		git switch-pull $1 \
-	#"
-
 	branch-delete = "! \
 		current=`git branch-current` && \
 		parent=`git parent` && \
@@ -142,6 +137,13 @@
 		[[ ${1+abc} ]] && \
 		\
 		git commit-all \"$1\" && \
+		git push-remote \
+	#"
+
+	push-staged = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git commit -m \"$1\" && \
 		git push-remote \
 	#"
 
