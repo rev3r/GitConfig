@@ -103,7 +103,7 @@
 		git stash pop --index \
 	#"
 
-	branch-remote = "! \
+	switch-remote = "! \
 		[[ ${1+abc} ]] && \
 		\
 		git switch-pull $1 && \
