@@ -103,6 +103,13 @@
 		git stash pop --index \
 	#"
 
+	branch-remote = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git switch-pull $1 && \
+		git pull-parent \
+	#"
+
 	# commit
 
 	commit-amend = "! \
@@ -123,6 +130,14 @@
 		[[ ${1+abc} ]] && \
 		\
 		git rebase -i HEAD~$1 \
+	#"
+
+	# pull
+
+	pull-parent = "! \
+		git switch-pull `git parent` && \
+		git switch - && \
+		git merge `git parent` \
 	#"
 
 	# push
