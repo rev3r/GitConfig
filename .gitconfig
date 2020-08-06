@@ -86,6 +86,14 @@
 		git branch -D $current \
 	#"
 
+	# checkout
+
+	checkout-back = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git checkout @{-$1} \
+	#"
+
 	# switch
 
 	switch-pull = "! \
