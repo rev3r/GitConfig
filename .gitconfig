@@ -14,7 +14,7 @@
 
 	# config
 
-	config-alias = !git config --global --list --name-only | grep -E '^alias' | sed 's/^.\\{6\\}//' | sed 's/^/git /' | sort
+	config-alias = !git config --global --list --name-only | grep -E '^alias' | sed 's/^alias./git /' | sort
 	config-edit = config --global -e
 
 	# log
