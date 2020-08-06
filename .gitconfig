@@ -9,8 +9,8 @@
 [rerere]
 	enabled = true
 [alias]
-	parent = "! echo develop"
-	test = "! echo No tests defined"
+	parent = !echo develop
+	test = !echo 'No tests defined'
 
 	# config
 
@@ -19,7 +19,7 @@
 
 	# log
 
-	log-ahead = "! git log --oneline --ancestry-path `git parent`..HEAD"
+	log-ahead = !git log --oneline --ancestry-path `git parent`..HEAD
 	log-direct = log --oneline --first-parent
 	log-labeled = log --oneline --graph --simplify-by-decoration
 	log-all = log --oneline --decorate --graph
