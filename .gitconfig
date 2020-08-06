@@ -42,7 +42,7 @@
 
 	restore-worktree = restore --worktree .
 	restore-staged = restore --staged .
-	restore-both = restore --source=HEAD --worktree --staged .
+	restore-all = restore --source=HEAD --worktree --staged .
 
 	# reset
 
