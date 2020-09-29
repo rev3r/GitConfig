@@ -49,6 +49,16 @@
 	reset-last = reset HEAD^ --soft
 	reset-hard = reset HEAD^ --hard
 
+	# revert
+
+	revert-commit = "! \
+		[[ ${1+abc} ]] && \
+		\
+		git revert --no-commit $1 && \
+		git revert --quit && \
+		git restore --staged . \
+	#"
+
 	# clean
 
 	clean-test = clean -dx --dry-run
@@ -61,12 +71,12 @@
 	branch-recent = "! \
 		git fetch && \
 		git for-each-ref --sort='-committerdate' --format='%(color:dim)%(committerdate:relative)%09%(color:reset)%(refname:short)' --count=15 refs/heads/ \
-	#"
+	"
 
 	branch-all = "! \
 		git fetch && \
 		git branch -a --sort='-authordate' \
-	#"
+	"
 
 	branch-new = "! \
 		[[ ${1+abc} ]] && \
@@ -85,7 +95,7 @@
 		git push origin :$current && \
 		git switch $parent && \
 		git branch -D $current \
-	#"
+	"
 
 	# checkout
 
@@ -147,7 +157,7 @@
 		git switch-pull `git parent` && \
 		git switch - && \
 		git merge `git parent` \
-	#"
+	"
 
 	# push
 
