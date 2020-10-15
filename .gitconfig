@@ -92,7 +92,7 @@
 		\
 		[[ $current != $parent && $current != master ]] && \
 		\
-		git push origin :$current && \
+		git push -d origin $current && \
 		git switch $parent && \
 		git branch -D $current \
 	"
@@ -195,7 +195,7 @@
 		[[ ${1+abc} ]] && \
 		\
 		git tag -d $1 && \
-		git push origin :$1 \
+		git push -d origin $1 \
 	#"
 
 	tag-update = "! \
