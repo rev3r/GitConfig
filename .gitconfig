@@ -181,6 +181,11 @@
 		git push-remote \
 	#"
 
+	push-force = "! \
+		git fetch && \
+		git push --force-with-lease \
+	"
+
 	# tag
 
 	tag-new = "! \
