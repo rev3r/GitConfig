@@ -183,7 +183,7 @@
 
 	push-force = "! \
 		git fetch && \
-		git push --force-with-lease \
+		git push --force-with-lease --force-if-includes \
 	"
 
 	# tag
