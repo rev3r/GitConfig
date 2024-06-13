@@ -8,6 +8,9 @@
 	sslVerify = false
 [rerere]
 	enabled = true
+[push]
+	autoSetupRemote = true
+	default = current
 [alias]
 	parent = !echo develop
 	test = !echo 'No tests defined'
